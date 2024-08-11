@@ -1,0 +1,21 @@
+delta DMultiCurrency {
+    modifies com.priceside_drf.deltaj.paymentgateway.PaymentGateway {
+        adds String[] supportedCurrencies = {"USD", "EUR", "GBP", "JPY"};
+        
+        adds boolean isCurrencySupported(String currency) {
+            for (String supported : supportedCurrencies) {
+                if (supported.equals(currency)) return true;
+            }
+            return false;
+        }
+        
+        adds boolean makePayment(double amount, String currency) {
+            if (!isCurrencySupported(currency)) {
+                System.out.println("Currency not supported: " + currency);
+                return false;
+            }
+	        System.out.println("Making payment in " + currency);
+	        return processPayment(amount);
+        }
+    }
+}

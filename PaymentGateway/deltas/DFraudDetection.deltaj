@@ -1,0 +1,16 @@
+delta DFraudDetection {
+    modifies com.priceside_drf.deltaj.paymentgateway.PaymentGateway {
+        adds boolean detectFraud(double amount) {
+            // Simplified fraud detection logic
+            return amount > 1000000;
+        }
+        
+        modifies  processPayment(double amount) {
+            if (detectFraud(amount)) {
+                System.out.println("Fraud detected. Payment rejected.");
+                return false;
+            }
+            return original(amount);
+        }
+    }
+}

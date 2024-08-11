@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ASCII"?>
+<feature:DEFeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:feature="http://deltaecore.org/feature/1.0">
+  <rootFeature minCardinality="1" maxCardinality="1" name="PaymentGatewaySPL">
+    <groups maxCardinality="3">
+      <features maxCardinality="1" name="Basic"/>
+      <features maxCardinality="1" name="ECommerce"/>
+      <features maxCardinality="1" name="Marketplace"/>
+    </groups>
+  </rootFeature>
+</feature:DEFeatureModel>

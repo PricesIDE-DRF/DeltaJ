@@ -1,0 +1,7 @@
+delta DLocalBankIntegration {
+    modifies com.priceside_drf.deltaj.paymentgateway.PaymentGateway {
+	    adds void integrateWithLocalBank(String bankName) {
+	        System.out.println("Integrated with local bank: " + bankName);
+	    }
+	}
+}

@@ -1,0 +1,11 @@
+"Basic":
+<decore/DMultiCurrency.decore>
+
+"ECommerce":
+<decore/DMultiCurrency.decore>,
+<decore/DFraudDetection.decore>
+
+"Marketplace":
+<decore/DMultiCurrency.decore>,
+<decore/DFraudDetection.decore>,
+<decore/DLocalBankIntegration.decore>
