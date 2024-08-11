@@ -1,0 +1,9 @@
+"EmoticonButton":
+<decore/AddEmoticonButton.decore>
+
+"NoButtonsGUI":
+<decore/NoButtonsGUI.decore>
+
+"ChatBot":
+<decore/AddChatBotClass.decore>,
+<decore/ChatBotFunctionality.decore>

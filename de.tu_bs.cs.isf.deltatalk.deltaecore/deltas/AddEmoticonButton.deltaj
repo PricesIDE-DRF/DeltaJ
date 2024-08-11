@@ -1,0 +1,27 @@
+delta AddEmoticonButton {
+	modifies de.tu_bs.cs.isf.deltatalk.ChatWindow {
+		modifies setupButtons(GridBagConstraints c) {
+			JButton emoticonButton = new JButton();
+			emoticonButton.setVisible(true);
+			emoticonButton.setText(":-)");
+			emoticonButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					printEmoticon();
+				}
+			});
+			
+			c.fill = GridBagConstraints.NONE;
+			c.ipady = 20;
+			c.gridwidth = 1;
+			c.gridx = 0;
+			c.gridy = 2;
+			this.getContentPane().add(emoticonButton, c);
+			
+			original(c);
+		}
+		
+		adds private void printEmoticon() {
+			inputTextPane.setText(inputTextPane.getText() + " :-)");
+		}
+	}
+}

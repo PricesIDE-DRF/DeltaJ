@@ -1,0 +1,3 @@
+EmoticonButton -> !NoButtonsGUI
+
+NoButtonsGUI -> !EmoticonButton

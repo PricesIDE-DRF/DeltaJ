@@ -1,0 +1,29 @@
+ configuration delta "AddEmoticonButton"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/de/tu_bs/cs/isf/deltatalk/ChatWindow.java>
+		{
+	modifyStatementListContainer(<method:de.tu_bs.cs.isf.deltatalk.ChatWindow.setupButtons(GridBagConstraints)>, "private void setupButtons(GridBagConstraints c) {
+			JButton emoticonButton = new JButton();
+			emoticonButton.setVisible(true);
+			emoticonButton.setText(\":-)\");
+			emoticonButton.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					printEmoticon();
+				}
+			});
+			
+			c.fill = GridBagConstraints.NONE;
+			c.ipady = 20;
+			c.gridwidth = 1;
+			c.gridx = 0;
+			c.gridy = 2;
+			this.getContentPane().add(emoticonButton, c);
+		setupButtons$AddEmoticonButton(c);
+	}
+", "AddEmoticonButton", true);
+	addMember(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "private void printEmoticon() {
+			inputTextPane.setText(inputTextPane.getText() + \" :-)\");
+		}
+");
+	}
+	

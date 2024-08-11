@@ -1,0 +1,14 @@
+ configuration delta "ChatBotFunctionality"
+	dialect <http://www.emftext.org/java>
+		requires <AddChatBotClass.decore>
+		modifies <../src/de/tu_bs/cs/isf/deltatalk/MainClass.java>
+		{
+	addClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.MainClass>, "de.tu_bs.cs.isf.deltatalk.ChatBot");
+	modifyStatementListContainer(<method:de.tu_bs.cs.isf.deltatalk.MainClass.main(String)>, "public static void main(String[]arguments) {
+			ChatWindow window = new ChatWindow();
+			ChatBot bot = new ChatBot(window);
+			bot.run();
+	}
+", "ChatBotFunctionality", false);
+	}
+	

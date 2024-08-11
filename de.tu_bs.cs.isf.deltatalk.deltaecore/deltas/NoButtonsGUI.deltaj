@@ -1,0 +1,46 @@
+delta NoButtonsGUI {
+	modifies de.tu_bs.cs.isf.deltatalk.ChatWindow {
+		adds import java.awt.event.KeyEvent;
+		adds import javax.swing.AbstractAction;
+		adds import javax.swing.ActionMap;
+		adds import javax.swing.InputMap;
+		adds import javax.swing.JComponent;
+		adds import javax.swing.KeyStroke;
+		
+		removes import java.awt.event.ActionListener;
+		removes import javax.swing.JButton;
+	
+		modifies constructor() {
+			original();
+			
+			// Resize the window to better fit the button-less GUI
+			this.setSize(new Dimension(400, 685));
+		}
+		
+		modifies setupGUI(GridBagConstraints c) {
+			setupTextPanes(c);
+		}
+		
+		// Not needed anymore
+		removes setupButtons(GridBagConstraints);
+		
+		modifies setupTextPanes(GridBagConstraints c) {
+			original(c);
+			
+			//Implement sending on 'ENTER'
+			
+			InputMap iMap = inputTextPane.getInputMap(JComponent.WHEN_FOCUSED);
+			ActionMap aMap = inputTextPane.getActionMap();
+	
+			String enter = "enter";
+			iMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), enter);
+			aMap.put(enter, new AbstractAction() {
+	
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					sendMessage();
+				}
+			});
+		}
+	}
+}

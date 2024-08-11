@@ -1,0 +1,11 @@
+delta ChatBotFunctionality requires AddChatBotClass {
+	modifies de.tu_bs.cs.isf.deltatalk.MainClass {
+		adds import de.tu_bs.cs.isf.deltatalk.ChatBot;
+	
+		modifies main(String[] arguments) {
+			ChatWindow window = new ChatWindow();
+			ChatBot bot = new ChatBot(window);
+			bot.run();
+		}
+	}
+}

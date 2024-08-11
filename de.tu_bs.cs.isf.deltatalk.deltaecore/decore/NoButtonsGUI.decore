@@ -1,0 +1,45 @@
+ configuration delta "NoButtonsGUI"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/de/tu_bs/cs/isf/deltatalk/ChatWindow.java>
+		{
+	addClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "java.awt.event.KeyEvent");
+	addClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "javax.swing.AbstractAction");
+	addClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "javax.swing.ActionMap");
+	addClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "javax.swing.InputMap");
+	addClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "javax.swing.JComponent");
+	addClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "javax.swing.KeyStroke");
+	removeClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "java.awt.event.ActionListener");
+	removeClassifierImport(<class:de.tu_bs.cs.isf.deltatalk.ChatWindow>, "javax.swing.JButton");
+	modifyStatementListContainer(<constructor:de.tu_bs.cs.isf.deltatalk.ChatWindow.ChatWindow()>, "public ChatWindow() {
+		ChatWindow$NoButtonsGUI();
+			
+			// Resize the window to better fit the button-less GUI
+			this.setSize(new Dimension(400,685));
+	}
+", "NoButtonsGUI", true);
+	modifyStatementListContainer(<method:de.tu_bs.cs.isf.deltatalk.ChatWindow.setupGUI(GridBagConstraints)>, "private void setupGUI(GridBagConstraints c) {
+			setupTextPanes(c);
+	}
+", "NoButtonsGUI", false);
+	removeMember(<method:de.tu_bs.cs.isf.deltatalk.ChatWindow.setupButtons(GridBagConstraints)>);
+	modifyStatementListContainer(<method:de.tu_bs.cs.isf.deltatalk.ChatWindow.setupTextPanes(GridBagConstraints)>, "private void setupTextPanes(GridBagConstraints c) {
+		setupTextPanes$NoButtonsGUI(c);
+			
+			//Implement sending on 'ENTER'
+			
+			InputMap iMap = inputTextPane.getInputMap(JComponent.WHEN_FOCUSED);
+			ActionMap aMap = inputTextPane.getActionMap();
+	
+			String enter = \"enter\";
+			iMap.put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER,0), enter);
+			aMap.put(enter, new AbstractAction() {
+	
+				@Override
+				public void actionPerformed(ActionEvent arg0) {
+					sendMessage();
+				}
+			});
+	}
+", "NoButtonsGUI", true);
+	}
+	
