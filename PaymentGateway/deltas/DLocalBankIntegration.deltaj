@@ -1,7 +1,46 @@
 delta DLocalBankIntegration {
     modifies com.priceside_drf.deltaj.paymentgateway.PaymentGateway {
-	    adds void integrateWithLocalBank(String bankName) {
-	        System.out.println("Integrated with local bank: " + bankName);
-	    }
-	}
+        adds private java.util.Map<String, String[]> bankCodes;
+        
+        adds void initializeBankCodes() {
+            bankCodes.put("IDR", new String[]{"BCA", "BNI", "MANDIRI"});
+            bankCodes.put("USD", new String[]{"CITI", "CHASE", "WELLS"});
+            bankCodes.put("EUR", new String[]{"DEUT", "BNP", "SANT"});
+            bankCodes.put("GBP", new String[]{"BARC", "HSBC", "LLOY"});
+            bankCodes.put("JPY", new String[]{"MUFG", "SMBC", "MIZU"});
+        }
+        
+        adds String selectBankCode(String currency) {
+            String[] codes = bankCodes.get(currency);
+            if (codes == null || codes.length == 0) {
+                return null;
+            }
+            System.out.println("Available bank codes for " + currency + ":");
+            for (int i = 0; i < codes.length; i++) {
+                System.out.println((i + 1) + ". " + codes[i]);
+            }
+            System.out.print("Select a bank code (1-" + codes.length + "): ");
+            Scanner scanner = new Scanner(System.in);
+            int choice = scanner.nextInt();
+            if (choice < 1 || choice > codes.length) {
+                return null;
+            }
+            return codes[choice - 1];
+        }
+        
+        modifies processPayment(double amount, String currency) {
+            if (bankCodes.isEmpty()) {
+                initializeBankCodes();
+            }
+            
+            String bankCode = selectBankCode(currency);
+            if (bankCode == null) {
+                System.out.println("Invalid bank code selection. Payment cancelled.");
+                return false;
+            }
+            
+            System.out.println("Processing payment of " + amount + " " + currency + " through bank " + bankCode);
+            return original(amount, currency);
+        }
+    }
 }
