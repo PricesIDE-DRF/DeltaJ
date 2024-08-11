@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<feature:DEFeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:feature="http://deltaecore.org/feature/1.0">
+  <rootFeature minCardinality="1" maxCardinality="1" name="EPL">
+    <groups minCardinality="1" maxCardinality="2">
+      <features maxCardinality="1" name="Add"/>
+      <features maxCardinality="1" name="Neg"/>
+    </groups>
+  </rootFeature>
+</feature:DEFeatureModel>

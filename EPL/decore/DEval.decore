@@ -1,0 +1,16 @@
+ configuration delta "DEval"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/de/tu_bs/cs/isf/epl/Exp.java>, <../src/de/tu_bs/cs/isf/epl/Lit.java>
+		{
+	addMember(<interface:de.tu_bs.cs.isf.epl.Exp>, "int eval();
+");
+	addMember(<class:de.tu_bs.cs.isf.epl.Lit>, "/*modifiable*/ public int eval(de.tu_bs.cs.isf.epl.Exp s) {
+			return value;
+		}
+");
+	addMember(<class:de.tu_bs.cs.isf.epl.Lit>, "public int eval(){
+			return 0;
+		}
+");
+	}
+	

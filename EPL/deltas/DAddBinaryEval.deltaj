@@ -1,0 +1,10 @@
+delta DAddBinaryEval requires DAddEval {
+	modifies another.pack.Add {
+		modifies eval() {
+			java.util.List bla = null;
+			return 0;
+		}
+		
+		adds java.util.List testListe;
+	}
+}

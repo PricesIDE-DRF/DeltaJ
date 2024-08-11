@@ -1,0 +1,8 @@
+delta DNegEval requires DEval {
+	modifies de.tu_bs.cs.isf.epl.Neg {
+		adds void eval() {
+			expr.print();
+			return -1 * expr.eval();
+		}
+	}
+}

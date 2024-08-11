@@ -1,0 +1,12 @@
+ configuration delta "DPrettyPrint"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/de/tu_bs/cs/isf/epl/Lit.java>
+		{
+	modifyStatementListContainer(<method:de.tu_bs.cs.isf.epl.Lit.print()>, "public /*modifiable*/ void print() {
+			System.out.print(\"blümchen\");
+		print$DPrettyPrint();
+			System.out.print(\"blümchen\");
+	}
+", "DPrettyPrint", true);
+	}
+	

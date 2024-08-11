@@ -1,0 +1,28 @@
+delta DAddMod requires DAdd {
+	modifies another.pack.Add {
+		adds private java.lang.String bla() {
+			String bla = "hi";
+			bla.equals("hi");
+			return "null";
+		}
+		
+		visibility print(de.tu_bs.cs.isf.epl.Exp) { int };
+		
+		modifies print(de.tu_bs.cs.isf.epl.Exp a) {
+			original(a);
+			return 0;
+		}
+		
+		modifies bla() {
+			original();
+			System.out.println("hallo");
+			return "hi";
+		}
+		
+		adds public java.util.List manney;
+	}
+	
+	modifies another.pack.Add.intern {
+		adds int testFeld;
+	}
+} 

@@ -1,0 +1,15 @@
+delta DEval {
+	modifies de.tu_bs.cs.isf.epl.Exp {
+		adds int eval();
+	}
+	
+	modifies de.tu_bs.cs.isf.epl.Lit {
+		adds /*modifiable*/ public int eval(de.tu_bs.cs.isf.epl.Exp s) {
+			return value;
+		}
+		
+		adds public int eval(){
+			return 0;
+		}
+	}
+}

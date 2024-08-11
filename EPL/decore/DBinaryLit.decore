@@ -1,0 +1,17 @@
+ configuration delta "DBinaryLit"
+	dialect <http://www.emftext.org/java>
+		modifies <../src/de/tu_bs/cs/isf/epl/Lit.java>
+		{
+	addModifier(<field:de.tu_bs.cs.isf.epl.Lit.value>, "private");
+	addModifier(<field:de.tu_bs.cs.isf.epl.Lit.value>, "strictfp");
+	setPrimitiveTypeReference(<field:de.tu_bs.cs.isf.epl.Lit.value>, "int");
+	removeModifier(<field:de.tu_bs.cs.isf.epl.Lit.value>, "static");
+	addModifier(<method:de.tu_bs.cs.isf.epl.Lit.print()>, "static");
+	modifyStatementListContainer(<method:de.tu_bs.cs.isf.epl.Lit.print()>, "public /*modifiable*/ void print() {
+			for(Integer i : value) {
+				System.out.print(i);
+			}
+	}
+", "DBinaryLit", false);
+	}
+	

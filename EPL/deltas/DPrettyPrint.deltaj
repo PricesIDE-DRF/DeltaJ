@@ -1,0 +1,9 @@
+delta DPrettyPrint {
+	modifies de.tu_bs.cs.isf.epl.Lit {
+		modifies print() {
+			System.out.print("blümchen");
+			original();
+			System.out.print("blümchen");
+		}
+	}
+}

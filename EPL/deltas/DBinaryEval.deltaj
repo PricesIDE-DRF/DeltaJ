@@ -1,0 +1,8 @@
+delta DBinaryEval requires DEval {
+	modifies de.tu_bs.cs.isf.epl.Lit {
+		visibility eval(de.tu_bs.cs.isf.epl.Exp) { public };
+	}
+	
+	modifies de.tu_bs.cs.isf.epl.Exp {
+	}
+}

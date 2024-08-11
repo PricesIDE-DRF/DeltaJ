@@ -1,0 +1,29 @@
+ configuration delta "DAddMod"
+	dialect <http://www.emftext.org/java>
+		requires <DAdd.decore>
+		modifies <another/pack/Add.java>
+		{
+	addMember(<class:another.pack.Add>, "private java.lang.String bla() {
+			String bla = \"hi\";
+			bla.equals(\"hi\");
+			return \"null\";
+		}
+");
+	setPrimitiveTypeReference(<method:another.pack.Add.print(Exp)>, "int");
+	modifyStatementListContainer(<method:another.pack.Add.print(Exp)>, "public void print(de.tu_bs.cs.isf.epl.Exp a) {
+		print$DAddMod(a);
+			return 0;
+			}
+", "DAddMod", true);
+	modifyStatementListContainer(<method:another.pack.Add.bla()>, "private java.lang.String bla() {
+		bla$DAddMod();
+			System.out.println(\"hallo\");
+			return \"hi\";
+		}
+", "DAddMod", true);
+	addMember(<class:another.pack.Add>, "public java.util.List manney;
+");
+	addMember(<class:another.pack.Add.intern>, "int testFeld;
+");
+	}
+	

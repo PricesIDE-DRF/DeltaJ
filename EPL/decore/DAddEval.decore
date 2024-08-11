@@ -1,0 +1,20 @@
+ configuration delta "DAddEval"
+	dialect <http://www.emftext.org/java>
+		requires <DAdd.decore>, <DEval.decore>
+		modifies <another/pack/Add.java>
+		{
+	addMember(<class:another.pack.Add>, "int eval() {
+			return expr1.eval() + expr2.eval();
+		}
+");
+	addMember(<class:another.pack.Add>, "float kek(de.tu_bs.cs.isf.epl.Exp b) {
+			b.eval();
+			expr2.eval();
+		}
+");
+	modifyStatementListContainer(<method:another.pack.Add.kek(Exp)>, "float kek(de.tu_bs.cs.isf.epl.Exp a) {
+			a.eval();
+		}
+", "DAddEval", false);
+	}
+	

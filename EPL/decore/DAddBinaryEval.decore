@@ -1,0 +1,14 @@
+ configuration delta "DAddBinaryEval"
+	dialect <http://www.emftext.org/java>
+		requires <DAddEval.decore>
+		modifies <another/pack/Add.java>
+		{
+	modifyStatementListContainer(<method:another.pack.Add.eval()>, "int eval() {
+			java.util.List bla = null;
+			return 0;
+		}
+", "DAddBinaryEval", false);
+	addMember(<class:another.pack.Add>, "java.util.List testListe;
+");
+	}
+	

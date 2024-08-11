@@ -1,0 +1,28 @@
+delta DAdd {
+	adds {
+		package another.pack;
+		
+		import java.util.List;
+		//import java.util.*;
+		
+		public class Add {
+			List myList;
+			private class intern {}
+			de.tu_bs.cs.isf.epl.Exp expr1;
+			de.tu_bs.cs.isf.epl.Exp expr2;
+			
+			public Add(de.tu_bs.cs.isf.epl.Exp a, de.tu_bs.cs.isf.epl.Exp b) {
+				myList.add(null);
+				expr1 = a;
+				expr2 = b;
+			}
+			
+			public void print(de.tu_bs.cs.isf.epl.Exp a) {
+				print(a);
+				expr1.print();
+				System.out.print(" + ");
+				expr2.print();
+			}
+		}
+	}
+}

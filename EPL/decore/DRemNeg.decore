@@ -1,0 +1,8 @@
+ configuration delta "DRemNeg"
+	dialect <http://www.emftext.org/java>
+		requires <DNegEval.decore>
+		modifies <../src/de/tu_bs/cs/isf/epl/Neg.java>
+		{
+	removeClassifier(<class:de.tu_bs.cs.isf.epl.Neg>);
+	}
+	

@@ -1,0 +1,16 @@
+delta DAddEval requires DAdd, DEval {
+	modifies another.pack.Add {
+		adds int eval() {
+			return expr1.eval() + expr2.eval();
+		}
+		
+		adds float kek(de.tu_bs.cs.isf.epl.Exp b) {
+			b.eval();
+			expr2.eval();
+		}
+		
+		modifies kek(de.tu_bs.cs.isf.epl.Exp a) {
+			a.eval();
+		}
+	}
+}

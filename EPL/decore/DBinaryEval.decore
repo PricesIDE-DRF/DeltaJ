@@ -1,0 +1,8 @@
+ configuration delta "DBinaryEval"
+	dialect <http://www.emftext.org/java>
+		requires <DEval.decore>
+		modifies <../src/de/tu_bs/cs/isf/epl/Lit.java>, <../src/de/tu_bs/cs/isf/epl/Exp.java>
+		{
+	addModifier(<method:de.tu_bs.cs.isf.epl.Lit.eval(Exp)>, "public");
+	}
+	
