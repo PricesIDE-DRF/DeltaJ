@@ -1,21 +1,49 @@
 delta DMultiCurrency {
     modifies com.priceside_drf.deltaj.paymentgateway.PaymentGateway {
-        adds String[] supportedCurrencies = {"USD", "EUR", "GBP", "JPY"};
+        adds double[][] exchangeRates = {
+            {1.0, 0.93, 0.79, 149.56, 15680.35},  // USD to others
+            {1.08, 1.0, 0.85, 161.35, 16893.92},  // EUR to others
+            {1.27, 1.18, 1.0, 190.14, 19912.96},  // GBP to others
+            {0.0067, 0.0062, 0.0053, 1.0, 104.73},  // JPY to others
+            {0.000064, 0.000059, 0.000050, 0.0095, 1.0}  // IDR to others
+        };
         
-        adds boolean isCurrencySupported(String currency) {
-            for (String supported : supportedCurrencies) {
-                if (supported.equals(currency)) return true;
+        adds double convertCurrency(double amount, String from, String to) {
+            int fromIndex = -1, toIndex = -1;
+            for (int i = 0; i < supportedCurrencies.length; i++) {
+                if (supportedCurrencies[i].equals(from)) fromIndex = i;
+                if (supportedCurrencies[i].equals(to)) toIndex = i;
             }
-            return false;
+            if (fromIndex == -1 || toIndex == -1) return -1;
+            return amount * exchangeRates[fromIndex][toIndex];
         }
         
-        adds boolean makePayment(double amount, String currency) {
-            if (!isCurrencySupported(currency)) {
-                System.out.println("Currency not supported: " + currency);
-                return false;
-            }
-	        System.out.println("Making payment in " + currency);
-	        return processPayment(amount);
+        modifies initiate(Scanner scanner) {
+            System.out.print("Enter sender's currency (USD, EUR, GBP, JPY, IDR): ");
+            String senderCurrency = scanner.nextLine().toUpperCase();
+            
+            System.out.print("Enter target currency (USD, EUR, GBP, JPY, IDR): ");
+            String targetCurrency = scanner.nextLine().toUpperCase();
+                
+	        System.out.print("Enter amount: ");
+	        double amount = scanner.nextDouble();
+	        scanner.nextLine();
+	        
+	        boolean result = false;
+	       
+	        if (isCurrencySupported(targetCurrency) && isCurrencySupported(targetCurrency)) {
+		        double convertedAmount = convertCurrency(amount, senderCurrency, targetCurrency);
+	            System.out.println("Converting " + amount + " " + senderCurrency + " to " + convertedAmount + " " + targetCurrency);
+	        	result = this.processPayment(convertedAmount, targetCurrency);
+	        } else {
+	        	System.out.println("Currency not supported: " + targetCurrency + " or " + senderCurrency);
+	        }
+	        
+	        if (result) {
+	            System.out.println("Payment processed successfully.");
+	        } else {
+	            System.out.println("Payment processing failed.");
+	        }
         }
     }
 }

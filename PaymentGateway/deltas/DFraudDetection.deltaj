@@ -5,12 +5,12 @@ delta DFraudDetection {
             return amount > 1000000;
         }
         
-        modifies  processPayment(double amount) {
+        modifies  processPayment(double amount, String currency) {
             if (detectFraud(amount)) {
                 System.out.println("Fraud detected. Payment rejected.");
                 return false;
             }
-            return original(amount);
+            return original(amount, currency);
         }
     }
 }
