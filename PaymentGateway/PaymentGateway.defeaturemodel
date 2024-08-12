@@ -2,9 +2,12 @@
 <feature:DEFeatureModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:feature="http://deltaecore.org/feature/1.0">
   <rootFeature minCardinality="1" maxCardinality="1" name="PaymentGatewaySPL">
     <groups maxCardinality="3">
-      <features maxCardinality="1" name="Basic"/>
-      <features maxCardinality="1" name="ECommerce"/>
-      <features maxCardinality="1" name="Marketplace"/>
+      <features maxCardinality="1" name="FraudDetection"/>
+      <features maxCardinality="1" name="MultiCurrency">
+        <groups maxCardinality="1">
+          <features maxCardinality="1" name="LocalBankIntegration"/>
+        </groups>
+      </features>
     </groups>
   </rootFeature>
 </feature:DEFeatureModel>
