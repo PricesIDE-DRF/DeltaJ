@@ -351,6 +351,7 @@ Hasil evaluasi:
    - Desain lebih intuitif tanpa *overhead* *interface* dan kode *boilerplate*.
    
 ![Figure 21](figure21.jpg)
+
 Keterbatasan studi:
 - Hanya menggunakan satu sistem kecil, hasil tidak dapat digeneralisasi.
 - Hanya membandingkan dengan satu pendekatan lain (Eclipse RCP).
@@ -360,5 +361,7 @@ Studi ini menunjukkan bahwa DeltaJ 1.5 menawarkan pendekatan yang lebih fleksibe
 
 ## Daftar Pustaka
 [1] Koscielny et al. (2014). DeltaJ 1.5: delta-oriented programming for Java 1.5. In Proceedings of the 2014 International Conference on Principles and Practices of Programming
+
 [2] DeltaJ website. https://deltajava.org/
+
 [3] TU Braunschweig - Delta Research. https://www.tu-braunschweig.de/isf/research/deltas
