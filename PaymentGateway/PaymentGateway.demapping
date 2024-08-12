@@ -5,5 +5,4 @@
 <decore/DFraudDetection.decore>
 
 "LocalBankIntegration":
-<decore/DMultiCurrency.decore>,
 <decore/DLocalBankIntegration.decore>
