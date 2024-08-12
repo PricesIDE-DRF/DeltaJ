@@ -22,6 +22,7 @@ delta DLocalBankIntegration {
             System.out.print("Select a bank code (1-" + codes.length + "): ");
             Scanner scanner = new Scanner(System.in);
             int choice = scanner.nextInt();
+            scanner.close();
             if (choice < 1 || choice > codes.length) {
                 return null;
             }
